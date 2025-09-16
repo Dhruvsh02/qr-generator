@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR-Code Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+</head>
+<body>
+    <button id="darkModeToggle" type="button">🌙Dark Mode</button>
+    <div class="container">
+        <div class="hero-section">
+            <h1>Hello! Generate Your QR Codes</h1>
+            <p>Create a custom QR codes for different purposes. Choose from various types below and Generate your own professional looking QR Codes instantly.</p>
+        </div>
+
+        <div class="main-navbar">
+            <h2> Choose QR Code Type</h2>
+            <div class="qr-types-grid">
+                <a href="{{ url_for('url_generator') }} " class="qr-type-card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Website URL</h3>
+                    <p>Generate QR codes for websites and links</p>
+                </a>
+
+                <a href="{{ url_for('text_generator')}}" class="qr-type-card">
+                    <div class="card-icon">📝</div>
+                    <h3>Plain text</h3>
+                    <p>Create QR codes for any text content</p>
+                </a>
+
+                <a href="{{ url_for('email_generator')}}" class="qr-type-card">
+                    <div class="card-icon">📧</div>
+                    <h3>EMAIL</h3>
+                    <p>Generate QR codes for email addresses</p>
+                </a>
+
+                <a href="{{ url_for('phone_generator')}}" class="qr-type-card">
+                    <div class="card-icon">📱</div>
+                    <h3>Phone Number</h3>
+                    <p>Generate QR codes for phone calls</p>
+                </a>
+
+                <a href="{{url_for('sms_generator')}}" class="qr-type-card">
+                    <div class="card-icon">💬</div>
+                    <h3>SMS Message</h3>
+                    <p>Generate QR codes for text messages</p>
+                </a>
+
+                <a href="{{url_for('wifi_generator')}}" class="qr-type-card">
+                    <div class="card-icon">📶</div>
+                    <h3>WIFI Network</h3>
+                    <p>Create QR codes for Wifi connection</p>
+                </a>
+
+                <a href="{{url_for('vcard_generator')}}" class="qr-type-card">
+                    <div class="card-icon">👤</div>
+                    <h3>Contact Card</h3>
+                    <p>Create QR codes for contact informations</p>
+                </a>
+
+                <a href="{{url_for('location_generator')}}" class="qr-type-card">
+                    <div class="card-icon">📍</div>
+                    <h3>Location</h3>
+                    <p>Create QR codes for map locations</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; {{ current_year }} QR Code Generator. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

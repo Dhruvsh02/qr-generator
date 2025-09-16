@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Your QR Code{% endblock %}
+{% block heading %}Your QR Code is Ready{% endblock %}
+
+{% block content %}
+<div class="result-container">
+    <h2>Here’s your QR Code:</h2>
+
+    <img src="{{ url_for('static', filename='qr_codes/' + qr_code) }}" 
+         alt="QR Code" 
+         width="250" 
+         class="qr-image">
+
+    <div class="button-group">
+        <!-- Download -->
+        <a href="{{ url_for('download_qr', filename=qr_code) }}" class="btn btn-primary">
+            ⬇️ Download QR Code
+        </a>
+
+        <!-- Generate Another -->
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">
+            🔄 Generate Another
+        </a>
+
+        <!-- Go to Home Page -->
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">
+            🏠 Go to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

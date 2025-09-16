@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Phone QR Generator{% endblock %} 
+{% block heading %}Generate Phone QR Code{% endblock %} 
+
+{% block content %}
+
+<div class="generator-layout">
+    <div class="form-section">
+        <form action="/generator" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="qr_type" value="phone">
+
+            <div class="form-group">
+                <label for="data">Phone Number:</label>
+                <input type="tel" name="data" id="dataInput" placeholder="+1234567890" required>
+                <small class="input-hint" >Include country code for International numbers</small>
+            </div>
+
+            <div class="customization-section">
+
+                <h3>Customization Options</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fg_color">Foreground Color:</label>
+                        <input type="color" name="fg_color" id="fgColor" value="#000000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bg_color">Background Color:</label>
+                        <input type="color" name="bg_color" id="bgColor" value="#ffffff">
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="shape">Shape:</label>
+                        <select name="shape" id="shapeInput">
+                            <option value="square">Square</option>
+                            <option value="dots">Dots</option>
+                            <option value="rounded">Rounded</option>
+                            <option value="classy">Classy</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="size">Size (pixels):</label>
+                        <select name="size" id="sizeInput">
+                            <option value="200">200x200</option>
+                            <option value="300">300x300</option>
+                            <option value="400">400x400</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="logo">Upload Logo (Optional):</label>
+                    <input type="file" name="logo" id="logoInput" accept="image/*">
+                </div>
+            </div>
+
+            <button type="submit" class="generate-btn">Generate QR Code</button>
+        </form>
+    </div>
+    
+        <div class="preview-section">
+            <h3>Live Preview</h3>
+            <div id="qrPreview" class="qr-preview">
+                <p class="preview-placeholder">Enter a phone number to see live preview</p>
+        </div>
+        
+        <div class="download-section" style="display: none;">
+            <label for="formatInput">Download Format:</label>
+            <select id="formatInput">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="svg">SVG</option>
+            </select>
+            <button id="downloadBtn" type="button">Download QR</button>
+        </div>
+    </div>
+</div>
+<div class="info-section">
+    <h4>📞 About Phone QR Codes</h4>
+    <p>When scanned, this QR code will prompt the user to call the provided phone number instantly. It’s perfect for customer support, business cards, or marketing materials.</p>
+
+    <div class="tips">
+        <h5>💡 Tips:</h5>
+        <ul>
+            <li>Use full phone numbers with country code for international users</li>
+            <li>Test the QR on both Android and iOS devices</li>
+            <li>Keep background and foreground colors high contrast</li>
+            <li>Add a logo for brand recognition</li>
+        </ul>
+    </div>
+</div>
+ <div class="examples">
+        <h5>📞 Format Examples:</h5>
+        <ul>
+            <li><strong>India:</strong> +919999999999</li>
+            <li><strong>US/Canada:</strong> +12345551234</li>
+            <li><strong>UK:</strong> +447123456789</li>
+            <li><strong>Australia:</strong> +61412345678</li>
+            <li><strong>Germany:</strong> +491234567890</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

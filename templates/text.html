@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Text QR Generator{% endblock %} 
+{% block heading %}Generate Text QR Code{% endblock %} 
+
+{% block content %}
+
+<div class="generator-layout">
+    <div class="form-section">
+        <form action="/generator" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="qr_type" value="text">
+
+            <div class="form-group">
+                <label for="text">Text Content:</label>
+                <textarea name="text" id="dataInput" rows="6" placeholder="Enter your text..." required></textarea>
+            </div>
+
+            <div class="customization-section">
+                <h3>Customization Options</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fg_color">Foreground Color:</label>
+                        <input type="color" name="fg_color" id="fgColor" value="#000000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bg_color">Background Color:</label>
+                        <input type="color" name="bg_color" id="bgColor" value="#ffffff">
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="shape">Shape:</label>
+                        <select name="shape" id="shapeInput">
+                            <option value="square">Square</option>
+                            <option value="dots">Dots</option>
+                            <option value="rounded">Rounded</option>
+                            <option value="classy">Classy</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="size">Size (pixels):</label>
+                        <select name="size" id="sizeInput">
+                            <option value="200">200x200</option>
+                            <option value="300">300x300</option>
+                            <option value="400">400x400</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="logo">Upload Logo (Optional):</label>
+                    <input type="file" name="logo" id="logoInput" accept="image/*">
+                </div>
+            </div>
+
+            <button type="submit" class="generate-btn">Generate QR Code</button>
+        </form>
+    </div>
+    
+        <div class="preview-section">
+            <h3>Live Preview</h3>
+            <div id="qrPreview" class="qr-preview">
+                <p class="preview-placeholder">Enter Your Text to see live preview</p>
+        </div>
+        
+        <div class="download-section" style="display: none;">
+            <label for="formatInput">Download Format:</label>
+            <select id="formatInput">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="svg">SVG</option>
+            </select>
+            <button id="downloadBtn" type="button">Download QR</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

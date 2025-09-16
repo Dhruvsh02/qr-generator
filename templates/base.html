@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}QR Code Generator{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+</head>
+<body>
+    <button id="darkModeToggle" type="button">🌙 Dark Mode</button>
+    
+    <div class="container">
+        <div class="top-nav">
+            <a href="{{ url_for('home') }}" class="home-link">🏠 Home</a>
+            <h1>{% block heading %}Generate QR Code{% endblock %}</h1>
+        </div>
+        
+        <nav class="page-navbar">
+            <ul>
+                <li><a href="{{ url_for('url_generator') }}" {% if request.endpoint == 'url_generator' %}class="active"{% endif %}>🌐 URL</a></li>
+                <li><a href="{{ url_for('text_generator') }}" {% if request.endpoint == 'text_generator' %}class="active"{% endif %}>📝 Text</a></li>
+                <li><a href="{{ url_for('email_generator') }}" {% if request.endpoint == 'email_generator' %}class="active"{% endif %}>📧 Email</a></li>
+                <li><a href="{{ url_for('phone_generator') }}" {% if request.endpoint == 'phone_generator' %}class="active"{% endif %}>📱 Phone</a></li>
+                <li><a href="{{ url_for('sms_generator') }}" {% if request.endpoint == 'sms_generator' %}class="active"{% endif %}>💬 SMS</a></li>
+                <li><a href="{{ url_for('wifi_generator') }}" {% if request.endpoint == 'wifi_generator' %}class="active"{% endif %}>📶 WiFi</a></li>
+                <li><a href="{{ url_for('vcard_generator') }}" {% if request.endpoint == 'vcard_generator' %}class="active"{% endif %}>👤 VCard</a></li>
+                <li><a href="{{ url_for('location_generator') }}" {% if request.endpoint == 'location_generator' %}class="active"{% endif %}>📍 Location</a></li>
+                
+            </ul>
+        </nav>
+        
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <footer>
+        <p>&copy; {{ current_year }} QR Code Generator. All rights reserved.</p>
+    </footer>
+
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/generator.js') }}"></script>
+</body>
+</html>

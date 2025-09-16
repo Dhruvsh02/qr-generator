@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Location QR Generator{% endblock %}
+{% block heading %}Generate Location QR Code{% endblock %}
+
+{% block content %}
+<div class="generator-layout">
+    <div class="form-section">
+        <form action="/generator" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="qr_type" value="location">
+            
+            <div class="form-group">
+                <label for="data">Location URL:</label>
+                <input type="url" name="data" id="dataInput" placeholder="https://maps.google.com/..." required>
+                <small class="input-hint">Paste a Google Maps link, Apple Maps link, or any location URL</small>
+            </div>
+
+            <div class="location-help">
+                <h4>📍 How to get a location URL:</h4>
+                <div class="help-steps">
+                    <div class="step">
+                        <strong>Google Maps:</strong>
+                        <ol>
+                            <li>Open Google Maps and find your location</li>
+                            <li>Click "Share" button</li>
+                            <li>Copy the link provided</li>
+                        </ol>
+                    </div>
+                    <div class="step">
+                        <strong>Apple Maps:</strong>
+                        <ol>
+                            <li>Open Apple Maps and find your location</li>
+                            <li>Tap "Share" and select "Copy Link"</li>
+                            <li>Paste the copied link here</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="customization-section">
+                <h3>Customization Options</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fg_color">Foreground Color:</label>
+                        <input type="color" name="fg_color" id="fgColor" value="#000000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bg_color">Background Color:</label>
+                        <input type="color" name="bg_color" id="bgColor" value="#ffffff">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="shape">Shape:</label>
+                        <select name="shape" id="shapeInput">
+                            <option value="square">Square</option>
+                            <option value="dots">Dots</option>
+                            <option value="rounded">Rounded</option>
+                            <option value="classy">Classy</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="size">Size (pixels):</label>
+                        <select name="size" id="sizeInput">
+                            <option value="200">200x200</option>
+                            <option value="300">300x300</option>
+                            <option value="400">400x400</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="logo">Upload Logo (Optional):</label>
+                    <input type="file" name="logo" id="logoInput" accept="image/*">
+                </div>
+            </div>
+
+            <button type="submit" class="generate-btn">Generate QR Code</button>
+        </form>
+    </div>
+    
+    <div class="preview-section">
+        <h3>Live Preview</h3>
+        <div id="qrPreview" class="qr-preview">
+            <p class="preview-placeholder">Enter a location URL to see live preview</p>
+        </div>
+        
+        <div class="download-section" style="display: none;">
+            <label for="formatInput">Download Format:</label>
+            <select id="formatInput">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="svg">SVG</option>
+            </select>
+            <button id="downloadBtn" type="button">Download QR</button>
+        </div>
+    </div>
+</div>
+
+<div class="info-section">
+    <h4>📍 About Location QR Codes</h4>
+    <p>When scanned, this QR code will open the location in the user's default maps app, allowing them to view directions, get navigation, or see details about the place.</p>
+    
+    <div class="tips">
+        <h5>💡 Tips:</h5>
+        <ul>
+            <li>Use specific location URLs from Google Maps, Apple Maps, or other map services</li>
+            <li>Test the QR code to ensure it opens correctly on different devices</li>
+            <li>Make sure the location URL is accessible and doesn't require login</li>
+            <li>Consider adding your business logo to make it more branded</li>
+            <li>Place QR codes where people can easily scan them (business cards, flyers, storefronts)</li>
+        </ul>
+    </div>
+    
+    <div class="examples">
+        <h5>🗺️ Popular Map Services:</h5>
+        <ul>
+            <li><strong>Google Maps:</strong> https://maps.google.com/... or https://goo.gl/maps/...</li>
+            <li><strong>Apple Maps:</strong> https://maps.apple.com/...</li>
+            <li><strong>Bing Maps:</strong> https://www.bing.com/maps...</li>
+            <li><strong>OpenStreetMap:</strong> https://www.openstreetmap.org/...</li>
+        </ul>
+    </div>
+    
+    <div class="use-cases">
+        <h5>🏪 Perfect For:</h5>
+        <ul>
+            <li><strong>Business Locations:</strong> Help customers find your store or office</li>
+            <li><strong>Event Venues:</strong> Guide attendees to event locations</li>
+            <li><strong>Real Estate:</strong> Show property locations to potential buyers</li>
+            <li><strong>Restaurants:</strong> Help customers locate and navigate to your establishment</li>
+            <li><strong>Tourist Attractions:</strong> Direct visitors to points of interest</li>
+            <li><strong>Delivery Points:</strong> Specify exact pickup or delivery locations</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
