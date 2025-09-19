@@ -135,5 +135,4 @@ def download_qr(filename):
     return send_file(filepath, as_attachment=True)
 
 
-if __name__ == '__main__':
-    app.run
+app = app 
