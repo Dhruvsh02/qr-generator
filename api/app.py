@@ -136,4 +136,4 @@ def download_qr(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run
